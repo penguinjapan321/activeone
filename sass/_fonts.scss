@@ -1,0 +1,76 @@
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: otf ttf) {
+  $src: null;
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype",
+    woff2: "woff2",
+  );
+
+  @each $ext in $exts {
+    $format: map-get($formats, $ext);
+    $src: append($src, url(quote($path)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+@include font-face(
+  "yu_min",
+  "../sass/fonts/yumin_medium.woff2",
+  100,
+  null,
+  woff2
+);
+@include font-face(
+  "yu_min",
+  "../sass/fonts/YuMincho_demibold.woff2",
+  200,
+  null,
+  woff2
+);
+//@include font-face('yu_min', '../sass/fonts/yumin_exbold.woff2', 300, null, woff2);
+
+//@include font-face('hiragino', '../sass/fonts/hiragino_w1.woff2', 100, null, woff2);
+//@include font-face('hiragino', '../sass/fonts/hiragino_w2.woff2', 200, null, woff2);
+@include font-face(
+  "hiragino",
+  "../sass/fonts/hiragino_w3.woff2",
+  300,
+  null,
+  woff2
+);
+@include font-face(
+  "hiragino",
+  "../sass/fonts/hiragino_w4.woff2",
+  400,
+  null,
+  woff2
+);
+@include font-face(
+  "hiragino",
+  "../sass/fonts/hiragino_w5.woff2",
+  500,
+  null,
+  woff2
+);
+@include font-face(
+  "hiragino",
+  "../sass/fonts/hiragino_w6.woff2",
+  600,
+  null,
+  woff2
+);
+//@include font-face('hiragino', '../sass/fonts/hiragino_w7.woff2', 700, null, woff2);
+//@include font-face('hiragino', '../sass/fonts/hiragino_w8.woff2', 800, null, woff2);
+//@include font-face('hiragino', '../sass/fonts/hiragino_w9.woff2', 900, null, woff2);
+
+//@include font-face('futu', '../sass/fonts/F-Light.woff2', 100, null, woff2);
+@include font-face("futu", "../sass/fonts/F-Medium.woff2", 200, null, woff2);
+//@include font-face('futu', '../sass/fonts/F-Heavy.woff2', 300, null, woff2);
+@include font-face("futu", "../sass/fonts/F-Bold.woff2", 400, null, woff2);
+//@include font-face('futu', '../sass/fonts/F-ExtraBold.woff2', 500, null, woff2);

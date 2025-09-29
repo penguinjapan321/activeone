@@ -1,0 +1,208 @@
+<script src="javascript/jquery.inview.min.js"></script>
+
+<script src="javascript/splide-extension-intersection.min.js"></script>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script>
+  $(function () {
+    $(".fade, .sp_border").on("inview", function (event, isInView) {
+      if (isInView) {
+        $(this).stop().addClass("is_show");
+      }
+    });
+  });
+</script>
+<script>
+  $(function () {
+    $(".slide_navi").on("inview", function (event, isInView) {
+      if (isInView && window.matchMedia("(max-width: 768px)").matches) {
+        $(this).stop().addClass("is_show");
+      }
+    });
+  });
+</script>
+<script>
+  $(window).on("load resize", function () {
+    var top_splide = new Splide("#top_splide", {
+      type: "loop",
+      //    padding: "4rem",
+      perPage: 1,
+      start: 0,
+      mediaQuery: "min",
+      autoStart: true,
+      breakpoints: {
+        769: {
+          type: "slide",
+          fixedWidth: 390,
+          padding: "3rem",
+          rewind: false,
+          arrows: false,
+        },
+      },
+      speed: 800,
+      interval: 9000,
+      arrows: true,
+      //   pagination: true,
+      pauseOnHover: true,
+      easing: "ease-in-out",
+      autoplay: true,
+      intersection: {
+        inView: {
+          autoplay: true,
+        },
+        outView: {
+          autoplay: false,
+        },
+      },
+    });
+
+    top_splide
+      .mount(window.splide.Extensions)
+      .on("autoplay:playing", function (rate) {
+        $(".splide__pagination__page.is-active").css({
+          width: rate * 100 + "%",
+        });
+      });
+  });
+</script>
+
+<script>
+  var gallery_splide = new Splide("#gallery-carousel", {
+    pagination: false,
+    speed: 800,
+  });
+
+  var thumbnails = document.getElementsByClassName("thumbnail");
+  var current;
+
+  for (var i = 0; i < thumbnails.length; i++) {
+    initThumbnail(thumbnails[i], i);
+  }
+
+  function initThumbnail(thumbnail, index) {
+    thumbnail.addEventListener("click", function () {
+      gallery_splide.go(index);
+    });
+  }
+
+  gallery_splide.on("mounted move", function () {
+    var thumbnail = thumbnails[splide.index];
+
+    if (thumbnail) {
+      if (current) {
+        current.classList.remove("is-active");
+      }
+
+      thumbnail.classList.add("is-active");
+      current = thumbnail;
+    }
+  });
+
+  gallery_splide.mount();
+</script>
+<script>
+  var main = new Splide("#main-carousel", {
+    type: "fade",
+    rewind: true,
+    pagination: false,
+    arrows: false,
+    speed: 1000,
+  });
+
+  var thumb_splide = new Splide("#thumbnail-carousel", {
+    fixedWidth: 180,
+    fixedHeight: 90,
+    rewind: true,
+    rewindByDrag: true,
+    pagination: false,
+    focus: "center",
+    isNavigation: true,
+    breakpoints: {
+      768: {
+        fixedWidth: 100,
+        fixedHeight: 60,
+      },
+    },
+  });
+  main.sync(thumb_splide);
+  main.mount();
+  thumb_splide.mount();
+</script>
+
+<script>
+  var main = new Splide("#main-carousel-1", {
+    type: "fade",
+    rewind: true,
+    pagination: false,
+    arrows: false,
+    speed: 1000,
+  });
+
+  var thumb_splide = new Splide("#thumbnail-carousel-1", {
+    fixedWidth: 180,
+    fixedHeight: 90,
+    rewind: true,
+    rewindByDrag: true,
+    pagination: false,
+    focus: "center",
+    isNavigation: true,
+    breakpoints: {
+      768: {
+        fixedWidth: 100,
+        fixedHeight: 60,
+      },
+    },
+  });
+  main.sync(thumb_splide);
+  main.mount();
+  thumb_splide.mount();
+</script>
+
+<script>
+  var main = new Splide("#main-carousel-2", {
+    type: "fade",
+    rewind: true,
+    pagination: false,
+    arrows: false,
+    speed: 1000,
+  });
+
+  var thumb_splide = new Splide("#thumbnail-carousel-2", {
+    fixedWidth: 180,
+    fixedHeight: 90,
+    rewind: true,
+    rewindByDrag: true,
+    pagination: false,
+    focus: "center",
+    isNavigation: true,
+    breakpoints: {
+      768: {
+        fixedWidth: 100,
+        fixedHeight: 60,
+      },
+    },
+  });
+  main.sync(thumb_splide);
+  main.mount();
+  thumb_splide.mount();
+</script>
+<!-- swiper -->
+<script>
+  // Swiper1
+  let mySwiper = new Swiper(".swiper", {
+    lazy: {
+      loadOnTransitionStart: true,
+      loadPrevNext: true,
+    },
+    navigation: {
+      //ナビゲーションのオプション（矢印ボタンの要素を指定）
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+<!-- /swiper -->
+
+<script src="featherlight/featherlight.js"></script>
+
+<script src="javascript/common.js"></script>

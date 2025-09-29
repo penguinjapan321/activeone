@@ -1,0 +1,513 @@
+$brand_color: #766440;
+$brand_black: #222222;
+$brand_red: #c42323;
+$brand_white: #ffffff;
+$brand_gray: #b4b4b4;
+//$link_gradient: linear-gradient(90deg, #899bbf, #1bf7f7);
+$link_gradient: linear-gradient(90deg, #dbc14c, #aa9547);
+
+$red_gradient: linear-gradient(-180deg, #c42323, #8a1212);
+
+$sp_dropshadow: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.2));
+$pc_dropshadow: drop-shadow(4px 8px 10px rgba(0, 0, 0, 0.3));
+
+$breakpoints: (
+  "sp": "screen and (max-width: 768px)",
+  "pc": "screen and (min-width: 769px)",
+) !default;
+@mixin media($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+$ja_g: "hiragino";
+$ja_m: "yu_min";
+$en: "futu";
+@mixin v_h_center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin v_center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+@mixin h_center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin menuListTransitionDelay($quantity, $speed) {
+  @for $i from 1 through $quantity {
+    &:nth-child(#{$i}) {
+      transition-delay: ($i - 1) * $speed + 400ms;
+    }
+  }
+}
+@mixin menuListChildTransitionDelay($quantity: 5, $speed: 100ms) {
+  @for $i from 1 through $quantity {
+    &:nth-child(#{$i}) {
+      transition-delay: ($i - 1) * $speed + 900ms;
+    }
+  }
+}
+@mixin shiny($duration) {
+  &::before {
+    content: "";
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shine $duration ease-in-out infinite;
+    position: absolute;
+    top: -180px;
+    left: 0;
+    opacity: 0;
+    transform: rotate(45deg);
+    z-index: 9;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: scale(0) rotate(45deg);
+      opacity: 0;
+    }
+    80% {
+      transform: scale(0) rotate(45deg);
+      opacity: 0.5;
+    }
+    81% {
+      transform: scale(4) rotate(45deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(50) rotate(45deg);
+      opacity: 0;
+    }
+  }
+}
+
+@mixin slideAnim {
+  animation-name: slide;
+  animation-iteration-count: 3;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  10% {
+    opacity: 0.9;
+    transform: translateX(20%);
+  }
+  20% {
+    transform: translateX(20%);
+  }
+  80% {
+    transform: translateX(-120%);
+  }
+  90% {
+    opacity: 0.9;
+    transform: translateX(-120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+}
+@mixin bound {
+  animation: boundAnim 3s infinite;
+}
+
+@keyframes boundAnim {
+  0% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-6px);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-3px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@mixin h2header($color) {
+  margin: 0 0 40px;
+  @include media(pc) {
+    @include max-width(980px);
+    margin: 0 auto 4vh;
+  }
+  &__inner {
+    text-align: center;
+    overflow-x: clip;
+    &--contents {
+    }
+    h2 {
+      color: $color;
+      font-family: $ja_m;
+      margin-bottom: 0.6rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      font-weight: 200;
+      line-height: 2.2rem;
+      @include media(pc) {
+        font-size: 3.4rem;
+        margin-bottom: 3rem;
+      }
+    }
+    p {
+      color: $color;
+      font-family: $ja_g;
+      font-size: 1.4rem;
+      font-weight: 500;
+      position: relative;
+      display: inline-block;
+      &::before,
+      &::after {
+        content: "";
+        width: 0;
+        height: 1px;
+        display: block;
+        position: absolute;
+        @include v_center;
+        background-color: $color;
+        transition-duration: 1s;
+        transition-delay: 1s;
+        transition-timing-function: ease-in;
+      }
+      &::before {
+        right: 100%;
+      }
+      &::after {
+        left: 100%;
+      }
+      @include media(pc) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+@mixin secondary_btn {
+  position: relative;
+  filter: $sp_dropshadow;
+  &__inner {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    @include shiny(6s);
+    border-radius: 9999px;
+    &--contents {
+      position: relative;
+      display: inline-block;
+      background: $link_gradient;
+      padding: 5px 20px;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-align: center;
+      @include media(pc) {
+        padding: 6px 30px;
+      }
+      &:hover,
+      &:focus {
+        border-image: $link_gradient;
+        z-index: 0;
+        &:before {
+          content: "";
+          position: absolute;
+          background: $brand_white; /* 白抜き用の背景 */
+          top: 4px;
+          right: 4px;
+          bottom: 4px;
+          left: 4px;
+          border-radius: 9999px; /* border-radiusを調整 */
+          z-index: -1; /* z-indexを指定 */
+        }
+        p {
+          background: $link_gradient;
+          color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          &::after {
+            border-top: solid 2px #aa9547;
+            border-right: solid 2px #aa9547;
+          }
+        }
+      }
+      &_p {
+        font-weight: 500;
+        font-size: 1rem;
+        color: $brand_white;
+        position: relative;
+        padding-right: 10px;
+        font-family: $ja_g;
+        @include media(pc) {
+          font-size: 1.2rem;
+          margin-right: 0;
+        }
+        &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 0;
+          border-top: solid 2px $brand_white;
+          border-right: solid 2px $brand_white;
+          transform: rotate(45deg);
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+
+@mixin primary_btn {
+  position: relative;
+  filter: $sp_dropshadow;
+
+  &__inner {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    @include shiny(6s);
+    border-radius: 9999px;
+    &--contents {
+      position: relative;
+      display: inline-block;
+      background: $link_gradient;
+      padding: 10px 30px;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-align: center;
+      @include media(pc) {
+        padding: 0 30px;
+      }
+      &:hover,
+      &:focus {
+        border-image: $link_gradient;
+        z-index: 0;
+        &:before {
+          content: "";
+          position: absolute;
+          background: $brand_white; /* 白抜き用の背景 */
+          top: 4px;
+          right: 4px;
+          bottom: 4px;
+          left: 4px;
+          border-radius: 9999px; /* border-radiusを調整 */
+          z-index: -1; /* z-indexを指定 */
+        }
+        p {
+          background: $link_gradient;
+          color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          &::after {
+            border-top: solid 2px #aa9547;
+            border-right: solid 2px #aa9547;
+          }
+        }
+      }
+      &_p {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: $brand_white;
+        position: relative;
+        padding-right: 10px;
+        font-family: $ja_g;
+        &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 0;
+          border-top: solid 2px $brand_white;
+          border-right: solid 2px $brand_white;
+          transform: rotate(45deg);
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+      }
+    }
+  }
+  @include media(pc) {
+    filter: $pc_dropshadow;
+    font-size: 1.3rem;
+    &__inner {
+      &--contents {
+        &_p {
+          font-size: 1.4rem;
+          letter-spacing: 2px;
+          padding: 10px;
+        }
+        &:hover,
+        &:focus {
+          border-image: $link_gradient;
+          z-index: 0;
+          &:before {
+            content: "";
+            position: absolute;
+            background: $brand_white; /* 白抜き用の背景 */
+            top: 2px;
+            right: 2px;
+            bottom: 4px;
+            left: 4px;
+            border-radius: 9999px; /* border-radiusを調整 */
+            z-index: -1; /* z-indexを指定 */
+          }
+          p {
+            background: $link_gradient;
+            color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            &::after {
+              border-top: solid 2px #aa9547;
+              border-right: solid 2px #aa9547;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@mixin primary_btn_red {
+  position: relative;
+  filter: $sp_dropshadow;
+
+  .primary_btn_red__inner {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    @include shiny(6s);
+    border-radius: 9999px;
+    &--contents {
+      position: relative;
+      display: inline-block;
+      background: $red_gradient;
+      padding: 10px 30px;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-align: center;
+      @include media(pc) {
+        padding: 0 30px;
+      }
+      &:hover,
+      &:focus {
+        border-image: $red_gradient;
+        z-index: 0;
+        &:before {
+          content: "";
+          position: absolute;
+          background: $brand_white; /* 白抜き用の背景 */
+          top: 4px;
+          right: 4px;
+          bottom: 4px;
+          left: 4px;
+          border-radius: 9999px; /* border-radiusを調整 */
+          z-index: -1; /* z-indexを指定 */
+        }
+        p {
+          background: $red_gradient;
+          color: transparent;
+          background-clip: text;
+          text-fill-color: transparent;
+          &::after {
+            border-top: solid 2px #c42323;
+            border-right: solid 2px #c42323;
+          }
+        }
+      }
+      &_p {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: $brand_white;
+        position: relative;
+        padding-right: 10px;
+        font-family: $ja_g;
+        &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 0;
+          border-top: solid 2px $brand_white;
+          border-right: solid 2px $brand_white;
+          transform: rotate(45deg);
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+        }
+      }
+    }
+  }
+  @include media(pc) {
+    filter: $pc_dropshadow;
+    font-size: 1.3rem;
+    &__inner {
+      &--contents {
+        &_p {
+          font-size: 1.4rem;
+          letter-spacing: 2px;
+          padding: 10px;
+        }
+        &:hover,
+        &:focus {
+          border-image: $red_gradient;
+          z-index: 0;
+          &:before {
+            content: "";
+            position: absolute;
+            background: $brand_white; /* 白抜き用の背景 */
+            top: 2px;
+            right: 2px;
+            bottom: 4px;
+            left: 4px;
+            border-radius: 9999px; /* border-radiusを調整 */
+            z-index: -1; /* z-indexを指定 */
+          }
+          p {
+            background: $red_gradient;
+            color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            &::after {
+              border-top: solid 2px #c42323;
+              border-right: solid 2px #c42323;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin max-width($width) {
+  max-width: $width;
+  margin: auto;
+}

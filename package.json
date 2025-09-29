@@ -1,0 +1,30 @@
+{
+  "name": "activeone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "analyze-css.js",
+  "scripts": {
+    "build:sass": "sass --no-source-map sass:css",
+    "watch:sass": "sass --watch sass:css",
+    "analyze-css": "node analyze-css.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penguinjapan321/activeone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/penguinjapan321/activeone/issues"
+  },
+  "homepage": "https://github.com/penguinjapan321/activeone#readme",
+  "dependencies": {
+    "@projectwallace/css-code-quality": "^3.0.2"
+  },
+  "devDependencies": {
+    "sass": "^1.72.1"
+  }
+}
