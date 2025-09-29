@@ -8,56 +8,9 @@
       <div class="brand_pattern"></div>
       <header id="header" class="header">
         <!--#include FILE="include/header.html"-->
-        <div class="header_sub__inner display_pc">
-          <ul class="header_sub_menu js-nav">
-            <li class="header_sub_menu_li">
-              <a href="#features">6つの<br class="display_sp" />特徴</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#rooms">お部屋<br class="display_sp" />紹介</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#roomlist">空室<br class="display_sp" />状況</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#price">入居<br class="display_sp" />費用</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#equipment">施設<br class="display_sp" />概要</a>
-            </li>
-          </ul>
-        </div>
       </header>
 
-      <div class="foot_fixed_block_wrap">
-        <div class="contact_fixed_block">
-          <div class="contact_fixed_block__inner">
-            <p class="contact_fixed_block__inner-p fade">
-              見学予約・入居申し込み受付中！
-            </p>
-            <div class="row_flex_contents">
-              <div class="primary_btn fade">
-                <div class="primary_btn__inner">
-                  <div class="primary_btn__inner--contents">
-                    <p class="primary_btn__inner--contents_p">
-                      <a href="#contact">見学予約はこちら</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="primary_btn fade">
-                <div class="primary_btn__inner">
-                  <div class="primary_btn__inner--contents">
-                    <p class="primary_btn__inner--contents_p">
-                      <a href="season_terrace.html#roomlist">空室状況</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--#include FILE="include/child_page_foot_fixed_block.html"-->
 
       <main class="main">
         <div class="main__inner">
@@ -74,7 +27,30 @@
         </div>
       </main>
 
-      <section class="section">
+      <div class="page_navigation">
+        <ul class="page_navigation__inner">
+          <li class="page_navigation__inner-li">
+            <a href="#freeoutlife" class="page_navigation__inner-li-a">自由な外出・外泊・面会で、より豊かな日常を</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#meal-flexibility" class="page_navigation__inner-li-a">食事の自由を大切にした柔軟な対応</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#chair-selection" class="page_navigation__inner-li-a">多彩な椅子の種類</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#activity-space" class="page_navigation__inner-li-a">自主活動スペース</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#dayservice" class="page_navigation__inner-li-a">デイサービスを自由に活用できる</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#water-server" class="page_navigation__inner-li-a">常設の給水機で気軽に水分補給</a>
+          </li>
+        </ul>
+      </div>
+
+      <section class="section" id="intro-free-life">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="heading-h3 fade">
@@ -104,7 +80,7 @@
                 </h4>
               </div>
             </div>
-            <div class="swiper main-slider fade" data-id="1">
+            <div class="swiper fade">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img
@@ -137,29 +113,7 @@
               <div class="swiper-button-next"></div>
             </div>
 
-            <div class="swiper thumb-slider fade" data-id="1">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_1.jpg"
-                    alt="サムネイル画像1"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_2.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_3.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-              </div>
-              <div class="swiper-scrollbar"></div>
-            </div>
+            <!-- thumb-slider removed -->
             <div class="desc fade mgt-2vh">
               <p class="desc-p">
                 ご家族との大切な時間や、外出による気分転換は、心身の健康を保つうえでも重要だと考えております。<br />そのため、ご本人やご家族のご希望に応じて、柔軟に対応させていただいております。<br />
@@ -180,7 +134,7 @@
                 </h4>
               </div>
             </div>
-            <div class="swiper main-slider fade" data-id="2">
+            <div class="swiper fade">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img
@@ -205,23 +159,7 @@
               <div class="swiper-button-next"></div>
             </div>
 
-            <div class="swiper thumb-slider fade" data-id="2">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_4.jpg"
-                    alt="サムネイル画像1"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_5.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-              </div>
-              <div class="swiper-scrollbar"></div>
-            </div>
+            <!-- thumb-slider removed -->
             <div class="desc fade mgt-2vh">
               <p class="desc-p">
                 当施設では、朝昼晩の食事を提供していますが、ご自分でお好きなものを召し上がっていただくこともできます。<br />近隣のゆめタウンでの買い物や、ご家族様が作り置きしてくださったお料理、ご自身で調理されたものなど、食事の選択肢は自由です。ご入居者様のライフスタイルに合わせてご選択いただけます。
@@ -230,7 +168,7 @@
           </div>
         </div>
       </section>
-      <section class="section bg_color">
+  <section class="section bg_color" id="chair-selection">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -253,7 +191,7 @@
           </div>
         </div>
       </section>
-      <section class="section">
+  <section class="section" id="activity-space">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -277,7 +215,7 @@
         </div>
       </section>
 
-      <section class="section bg_color">
+  <section class="section bg_color" id="dayservice">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -288,7 +226,7 @@
               </div>
             </div>
 
-            <div class="swiper main-slider fade" data-id="3">
+            <div class="swiper fade">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img
@@ -313,23 +251,7 @@
               <div class="swiper-button-next"></div>
             </div>
 
-            <div class="swiper thumb-slider fade" data-id="3">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_6.jpg"
-                    alt="サムネイル画像1"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/nocontrol/child_nocontrol_7.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-              </div>
-              <div class="swiper-scrollbar"></div>
-            </div>
+            <!-- thumb-slider removed -->
 
             <div class="desc fade mgt-2vh">
               <p class="desc-p">

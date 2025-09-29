@@ -8,56 +8,9 @@
       <div class="brand_pattern"></div>
       <header id="header" class="header">
         <!--#include FILE="include/header.html"-->
-        <div class="header_sub__inner display_pc">
-          <ul class="header_sub_menu js-nav">
-            <li class="header_sub_menu_li">
-              <a href="#features">6つの<br class="display_sp" />特徴</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#rooms">お部屋<br class="display_sp" />紹介</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#roomlist">空室<br class="display_sp" />状況</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#price">入居<br class="display_sp" />費用</a>
-            </li>
-            <li class="header_sub_menu_li">
-              <a href="#equipment">施設<br class="display_sp" />概要</a>
-            </li>
-          </ul>
-        </div>
       </header>
 
-      <div class="foot_fixed_block_wrap">
-        <div class="contact_fixed_block">
-          <div class="contact_fixed_block__inner">
-            <p class="contact_fixed_block__inner-p fade">
-              見学予約・入居申し込み受付中！
-            </p>
-            <div class="row_flex_contents">
-              <div class="primary_btn fade">
-                <div class="primary_btn__inner">
-                  <div class="primary_btn__inner--contents">
-                    <p class="primary_btn__inner--contents_p">
-                      <a href="#contact">見学予約はこちら</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="primary_btn fade">
-                <div class="primary_btn__inner">
-                  <div class="primary_btn__inner--contents">
-                    <p class="primary_btn__inner--contents_p">
-                      <a href="season_terrace.html#roomlist">空室状況</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--#include FILE="include/child_page_foot_fixed_block.html"-->
 
       <main class="main">
         <div class="main__inner">
@@ -72,7 +25,24 @@
         </div>
       </main>
 
-      <section class="section">
+      <div class="page_navigation">
+        <ul class="page_navigation__inner">
+          <li class="page_navigation__inner-li">
+            <a href="#service-delight" class="page_navigation__inner-li-a">感動を生むサービスの提供</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#welfare-benefits" class="page_navigation__inner-li-a">サービス品質向上を目指す福利厚生</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#training-development" class="page_navigation__inner-li-a">多彩な研修で介護スキルを磨き続ける職員</a>
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#non-care-support" class="page_navigation__inner-li-a">介護職以外のスタッフも一丸となってサポート</a>
+          </li>
+        </ul>
+      </div>
+
+      <section class="section" id="intro-staff">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="heading-h3 fade">
@@ -91,7 +61,7 @@
         </div>
       </section>
 
-      <section class="section bg_color">
+  <section class="section bg_color" id="service-delight">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -99,7 +69,7 @@
                 <h4 class="h4heading__inner--h4">感動を生むサービスの提供</h4>
               </div>
             </div>
-            <div class="swiper main-slider fade" data-id="7">
+            <div class="swiper fade">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img
@@ -124,23 +94,7 @@
               <div class="swiper-button-next"></div>
             </div>
 
-            <div class="swiper thumb-slider fade" data-id="7">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/staff/child_staff_1.jpg"
-                    alt="サムネイル画像1"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/staff/child_staff_2.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-              </div>
-              <div class="swiper-scrollbar"></div>
-            </div>
+            <!-- thumb-slider removed -->
             <div class="desc fade mgt-2vh">
               <p class="desc-p">
                 私たちは『感動を生むサービスの提供』を理念に、ご入居者様一人ひとりの想いに寄り添った支援を行っています。<br />スタッフがやさしさと思いやりをもって関わり、『ここに来てよかった』『あなたに出会えてよかった』という声をいただけることが、私たちの誇りです。今後も現状に満足せず、さらに高い志を持って介護を提供し続けます。
@@ -149,7 +103,7 @@
           </div>
         </div>
       </section>
-      <section class="section">
+  <section class="section" id="welfare-benefits">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -172,7 +126,7 @@
           </div>
         </div>
       </section>
-      <section class="section bg_color">
+  <section class="section bg_color" id="training-development">
         <div class="section__inner">
           <div class="section__innner--contents">
             <div class="h4heading fade">
@@ -207,7 +161,7 @@
               </div>
             </div>
 
-            <div class="swiper main-slider fade" data-id="8">
+            <div class="swiper fade">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img
@@ -232,23 +186,7 @@
               <div class="swiper-button-next"></div>
             </div>
 
-            <div class="swiper thumb-slider fade" data-id="8">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/staff/child_staff_3.jpg"
-                    alt="サムネイル画像1"
-                  />
-                </div>
-                <div class="swiper-slide">
-                  <img
-                    src="image/child/season_terrace/staff/child_staff_4.jpg"
-                    alt="サムネイル画像2"
-                  />
-                </div>
-              </div>
-              <div class="swiper-scrollbar"></div>
-            </div>
+            <!-- thumb-slider removed -->
 
             <div class="desc fade mgt-2vh">
               <p class="desc-p">
