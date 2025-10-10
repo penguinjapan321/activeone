@@ -17,30 +17,16 @@
           <div class="main__inner--contents">
             <div class="mainImageBlock">
               <div class="mainImageBlock__inner">
-                <div class="mainImageBlock__inner--img staff_main-img"></div>
+                <div
+                  class="mainImageBlock__inner--img staff_main-img"
+                  data-bg="image/child/season_terrace/staff/child_staff_wide_1.jpg"
+                ></div>
               </div>
             </div>
             <h2 class="heading-h2 fade">「人」</h2>
           </div>
         </div>
       </main>
-
-      <div class="page_navigation">
-        <ul class="page_navigation__inner">
-          <li class="page_navigation__inner-li">
-            <a href="#service-delight" class="page_navigation__inner-li-a">感動を生むサービスの提供</a>
-          </li>
-          <li class="page_navigation__inner-li">
-            <a href="#welfare-benefits" class="page_navigation__inner-li-a">サービス品質向上を目指す福利厚生</a>
-          </li>
-          <li class="page_navigation__inner-li">
-            <a href="#training-development" class="page_navigation__inner-li-a">多彩な研修で介護スキルを磨き続ける職員</a>
-          </li>
-          <li class="page_navigation__inner-li">
-            <a href="#non-care-support" class="page_navigation__inner-li-a">介護職以外のスタッフも一丸となってサポート</a>
-          </li>
-        </ul>
-      </div>
 
       <section class="section" id="intro-staff">
         <div class="section__inner">
@@ -60,11 +46,34 @@
           </div>
         </div>
       </section>
-
-  <section class="section bg_color" id="service-delight">
+      <div class="page_navigation fade">
+        <ul class="page_navigation__inner">
+          <li class="page_navigation__inner-li">
+            <a href="#service-delight" class="page_navigation__inner-li-a"
+              >感動を生むサービスの提供</a
+            >
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#welfare-benefits" class="page_navigation__inner-li-a"
+              >サービス品質向上を目指す福利厚生</a
+            >
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#training-development" class="page_navigation__inner-li-a"
+              >多彩な研修で介護スキルを磨き続ける職員</a
+            >
+          </li>
+          <li class="page_navigation__inner-li">
+            <a href="#non-care-support" class="page_navigation__inner-li-a"
+              >介護職以外のスタッフも一丸となってサポート</a
+            >
+          </li>
+        </ul>
+      </div>
+      <section class="section" id="service-delight">
         <div class="section__inner">
           <div class="section__innner--contents">
-            <div class="h4heading fade">
+            <div class="h4heading bg_color fade">
               <div class="h4heading__inner">
                 <h4 class="h4heading__inner--h4">感動を生むサービスの提供</h4>
               </div>
@@ -103,21 +112,52 @@
           </div>
         </div>
       </section>
-  <section class="section" id="welfare-benefits">
+      <section id="welfare-benefits" class="section">
         <div class="section__inner">
           <div class="section__innner--contents">
-            <div class="h4heading fade">
+            <div class="h4heading bg_color fade">
               <div class="h4heading__inner">
                 <h4 class="h4heading__inner--h4">
                   サービス品質向上を目指す福利厚生
                 </h4>
               </div>
             </div>
-            <div class="mainImageBlock sectionMainImage mb_4vh">
-              <div class="mainImageBlock__inner">
-                <div class="mainImageBlock__inner--img benefits-img"></div>
+
+            <div class="swiper fade">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    class="swiper-lazy"
+                    data-src="image/child/season_terrace/staff/child_staff_5.jpg"
+                    alt="スライダー画像1"
+                  />
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="swiper-lazy"
+                    data-src="image/child/season_terrace/staff/child_staff_6.jpg"
+                    alt="スライダー画像2"
+                  />
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="swiper-lazy"
+                    data-src="image/child/season_terrace/staff/child_staff_7.jpg"
+                    alt="スライダー画像1"
+                  />
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
               </div>
+              <div class="swiper-pagination"></div>
+
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             </div>
+
+            <!-- thumb-slider removed -->
+
             <div class="desc fade mgt-2vh">
               <p class="desc-p">
                 職員の豊かな心を育むことで、サービスの品質向上に努めています。<br />福利厚生も充実しており、誕生日プレゼントや入社4年目の沖縄旅行、入社7年目の自由旅行、万博研修など、多彩な福利厚生を提供しています。職員一人ひとりが充実した環境の中で働くことで、より良いサービスの提供をお届けすることに繋がっています。
@@ -126,10 +166,11 @@
           </div>
         </div>
       </section>
-  <section class="section bg_color" id="training-development">
+
+      <section class="section" id="training-development">
         <div class="section__inner">
           <div class="section__innner--contents">
-            <div class="h4heading fade">
+            <div class="h4heading bg_color fade">
               <div class="h4heading__inner">
                 <h4 class="h4heading__inner--h4">
                   多彩な研修で介護スキルを磨き続ける職員
@@ -138,7 +179,10 @@
             </div>
             <div class="mainImageBlock sectionMainImage mb_4vh">
               <div class="mainImageBlock__inner">
-                <div class="mainImageBlock__inner--img kenshu-img"></div>
+                <div
+                  class="mainImageBlock__inner--img kenshu-img"
+                  data-bg="image/child/season_terrace/staff/child_staff_wide_2.jpg"
+                ></div>
               </div>
             </div>
             <div class="desc fade mgt-2vh">
@@ -150,10 +194,10 @@
         </div>
       </section>
 
-      <section class="section">
+      <section id="non-care-support" class="section">
         <div class="section__inner">
           <div class="section__innner--contents">
-            <div class="h4heading fade">
+            <div class="h4heading bg_color fade">
               <div class="h4heading__inner">
                 <h4 class="h4heading__inner--h4">
                   介護職以外のスタッフも一丸となってサポート
@@ -175,6 +219,22 @@
                   <img
                     class="swiper-lazy"
                     data-src="image/child/season_terrace/staff/child_staff_4.jpg"
+                    alt="スライダー画像2"
+                  />
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="swiper-lazy"
+                    data-src="image/child/season_terrace/staff/child_staff_8.jpg"
+                    alt="スライダー画像1"
+                  />
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    class="swiper-lazy"
+                    data-src="image/child/season_terrace/staff/child_staff_9.jpg"
                     alt="スライダー画像2"
                   />
                   <div class="swiper-lazy-preloader"></div>

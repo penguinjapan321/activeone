@@ -1,0 +1,107 @@
+@use "mixin" as *;
+.mb-1 {
+  margin-bottom: 1.8vh;
+}
+.mb_4vh {
+  margin-bottom: 4vh;
+}
+.pd-10 {
+  padding-bottom: 10vh;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.pdt-5vh {
+  padding-top: 5vh;
+}
+.pdt-2vh {
+  padding-top: 2vh;
+}
+
+.mgb-2 {
+  margin-bottom: 2vh;
+}
+.mgb-0 {
+  margin-bottom: 0 !important;
+}
+.mgt-2vh {
+  margin-top: 2vh;
+}
+.padding_side_20 {
+  padding: 0 20px;
+}
+.padding__tb_40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: $brand_white;
+  @include media(pc) {
+    padding: 5vh 0;
+  }
+}
+.padding__b_40 {
+  padding-bottom: 40px;
+}
+.padding__t_40 {
+  padding-top: 40px;
+}
+.padding__b_40 {
+  padding-bottom: 0;
+}
+.mgt-10 {
+  margin-top: 10px;
+}
+.mgt-20 {
+  margin-top: 20px;
+}
+.padding_side_10 {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.pdb-2vh {
+  padding-bottom: 2vh;
+}
+.pd-20 {
+  padding: 20px;
+}
+.pdrl-20 {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.pdrl-40 {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.pdtb-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pdtb-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.after-content {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  &::after {
+    background-color: $brand_white;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 0%;
+    @include h-center;
+    bottom: 0;
+    height: 1px;
+    transition-duration: 1s;
+    transition-delay: 1s;
+    transition-timing-function: ease;
+    bottom: -10px;
+  }
+  &.is_show {
+    &::after {
+      width: 100%;
+    }
+  }
+}

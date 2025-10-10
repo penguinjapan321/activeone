@@ -357,11 +357,11 @@ $en: "futu";
   }
   @include media(pc) {
     filter: $pc_dropshadow;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     &__inner {
       &--contents {
         &_p {
-          font-size: 1.4rem;
+          font-size: 1.6rem;
           letter-spacing: 2px;
           padding: 10px;
         }

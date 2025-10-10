@@ -1,61 +1,59 @@
-## 目的
+## Purpose
 
-このリポジトリは静的なウェブサイト（HTML/CSS/JS + Sass）です。AI エージェントは以下の指示に従って変更を行うと、開発者にとって有用で安全な修正ができます。
+This repository is a small static website (HTML/CSS/JS + Sass) intended to be served from MAMP/Apache with SSI enabled. The following concise instructions help an AI coding agent be immediately productive and avoid breaking site conventions.
 
-```instructions
-## 目的（要約）
+### Big picture
 
-このリポジトリは静的な HTML/CSS/JS サイト（MAMP の htdocs 配下で公開想定）です。AI エージェントは下記のプロジェクト固有ルールに従って変更を行ってください。
+- Root HTML files in the repo (e.g. `index.html`, `season_terrace.html`) are the pages served. Shared/layout fragments are injected via SSI includes in `include/` (look for <!--#include FILE="include/xxx.html"-->).
+- Styles are authored in `sass/` and compiled to `css/`. The repo commits the compiled CSS; after editing SCSS run `npm run build:sass` or `sass` locally.
+- JavaScript lives in `javascript/`. Global behaviors and UI glue are primarily in `javascript/common.js`. The site relies on jQuery plus Splide and Featherlight plugins.
 
-## 重要な「大きな絵」
+### Key files to read first
 
-- ルート直下の HTML が公開コンテンツ。共通部分は SSI（<!--#include FILE="include/xxx.html"-->）で注入される。
-- SCSS は `sass/`、コンパイル済み CSS は `css/`。ローカルでは dart-sass 等で手動またはスクリプトでコンパイルする必要あり。
-- JS は `javascript/`、グローバルな振る舞いは `javascript/common.js` に集中。依存: jQuery、Splide、Featherlight。
+- `include/head.html` — page <head> (fonts, meta, CSS links)
+- `include/script.html` — script imports and initialization (Splide, inview integrations)
+- `javascript/common.js` — header nav, hamburger, anchor scrolling, YouTube autoplay triggers, and other global interactions
+- `sass/_mixin.scss`, `sass/common.scss`, `sass/_fonts.scss` — mixins, responsive helpers, font setup (BEM-like CSS naming)
+- `analyze-css.js` and `package.json` — CSS quality check and available npm scripts
 
-## すぐ参照するファイル
+### Build & dev workflow (concrete)
 
-- `include/head.html` — 全ページの head（meta / フォント / CSS 読み込み）。
-- `include/script.html` — ページ下部のスクリプト初期化（Splide、inview 連携）。
-- `javascript/common.js` — ヘッダー、ハンバーガー、アンカー移動、YouTube 自動再生トリガー等のグローバル処理。
-- `sass/common.scss`, `sass/_mixin.scss`, `sass/_fonts.scss` — mixin とレスポンシブパターン（BEM 風命名）。
-- `analyze-css.js` — CSS 品質チェック（@projectwallace/css-code-quality）。
+1. Local preview: copy repository into MAMP's DocumentRoot. Apache must have mod_include enabled for SSI; file:// previews will not render includes.
+2. After editing SCSS run: npm run build:sass (this runs: sass --no-source-map sass:css). For continuous edit use npm run watch:sass.
+3. Run CSS quality checks: npm run analyze-css (node analyze-css.js). CI uses Node 18; local Node 16+ recommended.
+4. CI (see .github/workflows/ci.yml): push/PR runs npm ci → npm run build:sass → npm run analyze-css.
 
-## 開発ワークフロー（必須手順）
+### Project-specific conventions (do not invent alternatives)
 
-1. ローカルで確認するには MAMP の DocumentRoot に配置。SSI を有効にした Apache（mod_include）が必要。file:// では include が効かない。
-2. SCSS 編集後は `npm run build:sass`（package.json の script）か手元の sass CLI で `sass/` → `css/` をビルドしてから確認する。
-3. CSS 品質は `npm run analyze-css`（または `node analyze-css.js`）で確認。Node 16+ 推奨（CI は Node 18 を使用）。
-4. CI（`.github/workflows/ci.yml`）: push/PR で `npm ci` → `npm run build:sass` → `npm run analyze-css` が実行される。
+- Shared HTML fragments belong in `include/`. Edit shared content there; only change page-level HTML when the change is page-specific.
+- Do not change the load order in `include/script.html`; Splide and other initializers expect specific ordering.
+- Many JS behaviors depend on DOM selectors/structure (examples: `#top_splide`, `.fade`, `.js-nav`). When you change markup, search for selector usages in `javascript/` and `include/script.html`.
+- Naming follows a BEM-like approach. Reuse existing mixins in `sass/_mixin.scss` instead of adding custom responsive rules.
+- Avoid creating global vars; prefer `const`/`let` in `javascript/common.js` and follow existing script patterns.
 
-## プロジェクト固有ルール・注意点（実践的）
+### Concrete examples and patterns
 
-- HTML: 共通変更は `include/` を編集。単一ページ変更で済むならルートの HTML を直接編集。
-- JS: `include/script.html` の読み込み順を壊さない。Splide や gallery-sync 初期化はここにある。
-- セレクタ依存: 多くの JS は特定の DOM 構造（例: `#top_splide`, `.fade`, `.js-nav`）を前提にしている。DOM を変えるときは関連コードを検索して更新する。
-- 命名: BEM 風。新しいクラスやブロックを追加する際は既存スタイルと mixin を再利用。
-- グローバル変数に注意: `javascript/common.js` に暗黙のグローバルが残ることがある。新規実装では `let`/`const` を使用してスコープを明確にする。
+- New page: add a root-level HTML file and include fragments:
+  <!--#include FILE="include/head.html"-->
+  <!--#include FILE="include/header.html"-->
+  <!-- page content -->
+  <!--#include FILE="include/footer.html"-->
 
-## 具体的な短い例
+- Add a slider: follow existing Splide conventions — add a DOM element with an id like `id="top_splide"` and review `include/script.html` for breakpoint/initialization options.
 
-- 新ページ作成: ルートに HTML を置き、`<!--#include FILE="include/head.html"-->` / `include/header.html` / `include/footer.html` を挿入。
-- スライダー追加: DOM に `id="top_splide"` のような既存パターンを踏襲し、必要なら `include/script.html` の Splide 初期化設定を参照して breakpoint を合わせる。
-- SCSS 修正: 再利用できる mixin は `sass/_mixin.scss` にあるため先に確認する。
+- Edit SCSS: prefer adding small partials or editing `sass/common.scss` and reuse mixins from `sass/_mixin.scss`. After editing, rebuild CSS and commit the generated files if your team requires it.
 
-## 最低限のチェックリスト（PR 前）
+### Quick checklist before creating a PR
 
-1. 変更が共通箇所なら `include/` を更新したか。
-2. SCSS を編集したら `css/` を生成してコミットするか、チーム方針に従うこと。
-3. JS を編集したら `include/script.html` の初期化や依存セレクタへの影響を確認。
-4. ローカルで MAMP + mod_include による表示確認を行う。
+1. If change affects multiple pages, edit `include/` fragments.
+2. If you changed SCSS, run `npm run build:sass` and include updated files in `css/` per repo convention.
+3. If you changed JS or markup, confirm `include/script.html` initializers and update selectors in `javascript/` where necessary.
+4. Preview with MAMP + mod_include to validate SSI rendering.
 
-## ファイル参照サンプル（必ず見る箇所）
+### Files to always inspect for cross-cutting effects
 
-- `index.html`, `season_terrace.html`（ページパターン）
-- `include/head.html`, `include/script.html`, `include/header.html`, `include/footer.html`
-- `javascript/common.js`, `javascript/splide.min.js`, `javascript/featherlight.js`
-- `sass/common.scss`, `sass/_mixin.scss`
+- `include/script.html`, `javascript/common.js` — JS initialization and global behaviors
+- `sass/_mixin.scss`, `sass/common.scss` — CSS mixins and shared styles
+- `package.json`, `analyze-css.js`, `.github/workflows/ci.yml` — build/test automation
 
-```
-
-- 画像やアセットは `image/` に大量存在する。軽微な HTML 変更でもパスを壊さないよう注意。
+If anything here is unclear or you'd like me to expand specific examples (e.g., a short checklist for adding a Splide slider or a sample SCSS mixin usage), tell me which area and I'll iterate.

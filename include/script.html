@@ -186,23 +186,283 @@
   main.mount();
   thumb_splide.mount();
 </script>
+<script>
+  var main = new Splide("#main-carousel-2", {
+    type: "fade",
+    rewind: true,
+    pagination: false,
+    arrows: false,
+    speed: 1000,
+  });
+
+  var thumb_splide = new Splide("#thumbnail-carousel-2", {
+    rewind: true,
+    rewindByDrag: false,
+    pagination: false,
+    //  focus: "center",
+    isNavigation: false,
+    drag: false,
+    arrows: false,
+    breakpoints: {
+      768: {
+        fixedWidth: 100,
+        fixedHeight: 60,
+      },
+    },
+  });
+  main.sync(thumb_splide);
+  main.mount();
+  thumb_splide.mount();
+</script>
 <!-- swiper -->
 <script>
-  // Swiper1
-  let mySwiper = new Swiper(".swiper", {
-    lazy: {
-      loadOnTransitionStart: true,
-      loadPrevNext: true,
+  const sliderThumbnail = new Swiper(".slider-thumbnail", {
+    //   slidesPerView: 3, // サムネイルの枚数
+  });
+  // スライダー
+  const slider = new Swiper(".slider", {
+    loop: false,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
     },
-    navigation: {
-      //ナビゲーションのオプション（矢印ボタンの要素を指定）
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+
+    thumbs: {
+      swiper: sliderThumbnail,
     },
   });
 </script>
+<script>
+  const sliderThumbnail1 = new Swiper(".slider-thumbnail-1", {
+    //   slidesPerView: 3, // サムネイルの枚数
+  });
+  // スライダー
+  const slider1 = new Swiper(".slider-1", {
+    loop: false,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+
+    thumbs: {
+      swiper: sliderThumbnail1,
+    },
+  });
+</script>
+<!-- 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const mainSliders = document.querySelectorAll(".swiper.main-slider");
+    const thumbSliders = document.querySelectorAll(".swiper.thumb-slider");
+
+    mainSliders.forEach((mainSlider, index) => {
+      const id = mainSlider.getAttribute("data-id");
+
+      // サムネイルスライダーを取得
+      const thumbSlider = Array.from(thumbSliders).find(
+        (slider) => slider.getAttribute("data-id") === id
+      );
+
+      if (thumbSlider) {
+        // サムネイルスライダーの初期化
+        const thumbSwiper = new Swiper(thumbSlider, {
+          slidesPerView: 3,
+          freeMode: false,
+          watchSlidesProgress: true,
+        });
+
+        // メインスライダーの初期化
+        const mainSwiper = new Swiper(mainSlider, {
+          // loop: true,
+          effect: "fade",
+
+          thumbs: {
+            swiper: thumbSwiper,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+
+          // And if we need scrollbar
+        });
+      }
+    });
+  });
+</script>
+ -->
 <!-- /swiper -->
 
 <script src="featherlight/featherlight.js"></script>
 
 <script src="javascript/common.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 対象セクションとナビがなければ終了
+    const sections = Array.from(
+      document.querySelectorAll(".sec-scroll-point[id]")
+    );
+    const navs = Array.from(document.querySelectorAll(".js-nav"));
+    if (
+      !sections.length ||
+      !navs.length ||
+      typeof IntersectionObserver === "undefined"
+    )
+      return;
+
+    // id -> [linkElement, ...]
+    const idToLinks = new Map();
+    navs.forEach((nav) => {
+      nav.querySelectorAll('a[href^="#"]').forEach((a) => {
+        const hash = a.getAttribute("href");
+        if (!hash || hash === "#") return;
+        const id = hash.replace(/^#/, "");
+        if (!idToLinks.has(id)) idToLinks.set(id, []);
+        idToLinks.get(id).push(a);
+      });
+    });
+
+    // ヘッダー固定分のオフセットを取得
+    const getHeaderOffset = () => {
+      const header = document.querySelector("#header");
+      return header ? header.offsetHeight : 0;
+    };
+
+    // is-current の付与処理
+    const setActive = (activeId) => {
+      document
+        .querySelectorAll(".header_sub_menu_li.is-current")
+        .forEach((li) => {
+          li.classList.remove("is-current");
+        });
+      if (!activeId) return;
+      const links = idToLinks.get(activeId) || [];
+      links.forEach((a) => {
+        const li = a.closest(".header_sub_menu_li");
+        if (li) li.classList.add("is-current");
+      });
+    };
+
+    // visible な nav（表示されている方）だけでクリックを処理する
+    const isVisibleElement = (el) => {
+      return (
+        el &&
+        el.offsetParent !== null &&
+        window.getComputedStyle(el).display !== "none"
+      );
+    };
+
+    // 各アンカーにクリック処理を追加（表示中のnavで処理する）
+    idToLinks.forEach((links, id) => {
+      links.forEach((a) => {
+        a.addEventListener("click", function (ev) {
+          // 現在クリックされたアンカーが属する nav が表示されていなければ操作しない（別の重複navで処理される）
+          const parentNav = a.closest(".js-nav");
+          if (!isVisibleElement(parentNav)) {
+            // ただしリンク自体がページ遷移（別ページ）なら通常動作
+            const href = a.getAttribute("href") || "";
+            if (href.startsWith("#")) ev.preventDefault();
+            return;
+          }
+
+          ev.preventDefault();
+
+          const target = document.getElementById(id);
+          if (!target) return;
+
+          const headerOffset = getHeaderOffset();
+          const rectTop =
+            target.getBoundingClientRect().top +
+            (window.scrollY || window.pageYOffset);
+          const scrollTo = Math.max(0, rectTop - headerOffset - 8); // 少し余白
+
+          // ハッシュを変更せずにスムーズスクロール
+          window.scrollTo({ top: scrollTo, behavior: "smooth" });
+
+          // クリック直後に見た目を反映（即時）
+          setActive(id);
+
+          // スクロール完了後に再度 setActive（フォールバック）
+          clearTimeout(a._setActiveTimer);
+          a._setActiveTimer = setTimeout(() => {
+            setActive(id);
+            // 履歴ハッシュを更新（ページ遷移履歴を汚さない）
+            try {
+              history.replaceState(null, "", "#" + id);
+            } catch (e) {}
+          }, 500);
+        });
+      });
+    });
+
+    // IntersectionObserver はそのまま利用してスクロールに連動して反映
+    const visible = new Map();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            visible.set(id, entry.intersectionRatio || 0);
+          } else {
+            visible.delete(id);
+          }
+        });
+
+        let bestId = null;
+        let bestRatio = 0;
+        visible.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        });
+
+        if (!bestId) {
+          const viewportTop = window.scrollY || window.pageYOffset;
+          let closest = null;
+          let minDist = Infinity;
+          sections.forEach((s) => {
+            const rect = s.getBoundingClientRect();
+            const top = rect.top + (window.scrollY || window.pageYOffset);
+            const dist = Math.abs(
+              top - viewportTop - window.innerHeight * 0.25
+            );
+            if (dist < minDist) {
+              minDist = dist;
+              closest = s.id;
+            }
+          });
+          bestId = closest;
+        }
+
+        setActive(bestId);
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -40% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    // ハッシュがあれば初期状態で反映（短遅延でスクロール後に確実に反映）
+    if (location.hash) {
+      const initialId = location.hash.replace(/^#/, "");
+      if (initialId) {
+        setTimeout(() => {
+          // スムーズスクロールの代わりに即時反映（ページロード時）
+          const target = document.getElementById(initialId);
+          if (target) {
+            const headerOffset = getHeaderOffset();
+            const rectTop =
+              target.getBoundingClientRect().top +
+              (window.scrollY || window.pageYOffset);
+            window.scrollTo(0, Math.max(0, rectTop - headerOffset - 8));
+          }
+          setActive(initialId);
+        }, 50);
+      }
+    }
+  });
+</script>
