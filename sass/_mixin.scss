@@ -325,6 +325,9 @@ $en: "futu";
           color: transparent;
           background-clip: text;
           text-fill-color: transparent;
+          a {
+            color: #aa9547;
+          }
           &::after {
             border-top: solid 2px #aa9547;
             border-right: solid 2px #aa9547;

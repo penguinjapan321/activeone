@@ -152,28 +152,51 @@ $(function () {
   */
 });
 
-$("#g_menu_btn, .g_nav__inner").on("click", function () {
-  $("#g_menu_btn, .g_nav").toggleClass("active");
+// メニュー（ハンバーガー）トグル: モバイル表示のみで動作させる
+(function () {
+  var MOBILE_QUERY = "(max-width: 768px)";
+  var bodyLockPos = 0;
 
-  if ($("#g_menu_btn, .g_nav").hasClass("active")) {
-    bodyLockPos = $(window).scrollTop();
-    console.log(bodyLockPos);
-    function bodyLockFn() {
-      $("body").addClass("bodyLock").css(
-        {
-          top: -bodyLockPos,
-        },
-        5000
-      );
+  // 実際のトグル処理（namespace付きイベントを使う）
+  function toggleMenuHandler(e) {
+    e.preventDefault();
+    $("#g_menu_btn, .g_nav").toggleClass("active");
+
+    if ($("#g_menu_btn, .g_nav").hasClass("active")) {
+      bodyLockPos = $(window).scrollTop();
+      // body を固定（既存の振る舞いを保持）
+      function bodyLockFn() {
+        $("body").addClass("bodyLock").css({ top: -bodyLockPos });
+      }
+      // 少し遅延して bodyLock を適用
+      setTimeout(bodyLockFn, 500);
+    } else {
+      // bodyLock を解除して元の位置に戻す
+      $("body").removeClass("bodyLock").css({ top: 0 });
+      window.scrollTo(0, bodyLockPos);
     }
-    setTimeout(bodyLockFn, 500);
-  } else {
-    $("body").removeClass("bodyLock").css({
-      top: 0,
-    });
-    window.scrollTo(0, bodyLockPos);
   }
-});
+
+  // バインド／アンバインド制御
+  function bindIfMobile() {
+    var isMobile = window.matchMedia && window.matchMedia(MOBILE_QUERY).matches;
+    // 名前空間付きで安全に管理
+    $("#g_menu_btn, .g_nav__inner").off("click.menuToggle");
+    if (isMobile) {
+      $("#g_menu_btn, .g_nav__inner").on("click.menuToggle", toggleMenuHandler);
+    }
+  }
+
+  // 初期とリサイズ時に判定（リサイズはデバウンス）
+  var resizeTimer = null;
+  $(window).on("load resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(bindIfMobile, 150);
+  });
+
+  // DOM ready 時にも判定
+  bindIfMobile();
+})();
 
 // 変更: アンカークリックとハッシュ遷移の滑らかスクロールを即時ジャンプに変更
 $(function () {

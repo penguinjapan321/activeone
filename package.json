@@ -25,6 +25,8 @@
     "@projectwallace/css-code-quality": "^3.0.2"
   },
   "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-pug": "^5.0.0",
     "sass": "^1.72.1"
   }
 }
