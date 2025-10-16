@@ -5,7 +5,7 @@ $(function () {
   // 新しいULを作成（id/classを引き継ぐ）
   var $ul = $("<ul/>", {
     id: $table.attr("id"),
-    class: ((($table.attr("class") || "") + " inquiry_list form_ul").trim()),
+    class: (($table.attr("class") || "") + " inquiry_list form_ul").trim(),
   });
 
   // tr列挙（tbodyの有無どちらも対応）
@@ -16,18 +16,15 @@ $(function () {
     var $th = $tr.find("> th");
     var $td = $tr.find("> td");
 
-    // li を生成（require クラスなどは li に引き継ぐ）
-    var $li = $("<li/>", { class: $tr.attr("class") || "" });
-
-    // ラベル部分（thのHTMLをそのまま使うと * 表記も維持される）
-    var $label = $('<div class="label"/>').html($th.html() || $th.text());
-    var $field = $('<div class="field"/>');
+    // li を生成（元の tr クラスを引き継ぎ、.form_ul_li を追加）
+    var liClass = (($tr.attr("class") || "") + " form_ul_li").trim();
+    var $li = $("<li/>", { class: liClass });
 
     // ご住所の内側tableも ul/li に変換
     // .responsive > table.table がある場合は個別に処理
     var $innerTable = $td.find("> .responsive > table.table");
     if ($innerTable.length) {
-      var $addrUl = $('<ul class="address_list"/>');
+      var $addrUl = $('<ul class="address-list"/>');
       var $addrRows = $innerTable.find("> tbody > tr, > tr");
 
       $addrRows.each(function () {
@@ -35,16 +32,9 @@ $(function () {
         var $t0 = $ar.find("> td").eq(0);
         var $t1 = $ar.find("> td").eq(1);
 
-        var $addrLi = $('<li class="address_item"/>');
-        var $addrLabel = $('<div class="sub_label"/>').text(
-          ($t0.text() || "").trim()
-        );
-        var $addrField = $('<div class="sub_field"/>');
-
-        // td右側の中身（input/select/リンク/スクリプトなど）をそのまま移動
-        // contents() で子ノードを丸ごと移動することでイベント/属性を維持
-        $addrField.append($t1.contents());
-        $addrLi.append($addrLabel, $addrField);
+        var $addrLi = $('<li class="address-item"/>');
+        // 左TDと右TDの中身をそのまま移動（label/inputを変更しない）
+        $addrLi.append($t0.contents(), $t1.contents());
         $addrUl.append($addrLi);
       });
 
@@ -64,13 +54,14 @@ $(function () {
         }
       });
 
-      $field.append($responsiveWrap);
+      // 見出し（th）の内容も li に残す
+      if ($th.length) $li.append($th.contents());
+      $li.append($responsiveWrap);
     } else {
-      // 通常の行は td の中身をそのまま field に移動（ハイフンやスクリプトも含めて）
-      $field.append($td.contents());
+      // 通常の行は th/td の中身を li にそのまま移動（既存の label/input を変更しない）
+      if ($th.length) $li.append($th.contents());
+      if ($td.length) $li.append($td.contents());
     }
-
-    $li.append($label, $field);
     $ul.append($li);
   });
 
