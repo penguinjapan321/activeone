@@ -5,7 +5,7 @@ $(function () {
   // 新しいULを作成（id/classを引き継ぐ）
   var $ul = $("<ul/>", {
     id: $table.attr("id"),
-    class: ($table.attr("class") || "") + " inquiry_list",
+    class: ((($table.attr("class") || "") + " inquiry_list form_ul").trim()),
   });
 
   // tr列挙（tbodyの有無どちらも対応）
