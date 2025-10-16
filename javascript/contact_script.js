@@ -94,6 +94,28 @@ $(function () {
 
   // 元の table を ul で置き換え
   $table.replaceWith($ul);
+
+  // li に .require が付いている場合、内側の label に .require を移動
+  $ul.find("> li.require").each(function () {
+    var $li = $(this);
+    var $label = $li.find("label").first();
+    if ($label.length) {
+      $label.addClass("required");
+      $li.removeClass("require");
+    }
+  });
+
+  // label内の「*」「＊」を削除（テキストノードのみ対象、HTML構造は維持）
+  $ul.find("label").each(function () {
+    var $label = $(this);
+    $label.contents().each(function () {
+      if (this.nodeType === 3) {
+        var v = this.nodeValue || "";
+        var nv = v.replace(/[＊*]/g, "");
+        if (nv !== v) this.nodeValue = nv;
+      }
+    });
+  });
 });
 
 // .contact_form 内の form に自動で .h-adr を付与し、必要なら p-country-name も補完
@@ -111,4 +133,14 @@ $(function () {
       '<span class="p-country-name" style="display:none">Japan</span>'
     );
   }
+});
+
+// .input-zip に yubinbango の p-postal-code クラスを自動付与
+$(function () {
+  $(".input-zip").each(function () {
+    var $el = $(this);
+    if (!$el.hasClass("p-postal-code")) {
+      $el.addClass("p-postal-code");
+    }
+  });
 });
