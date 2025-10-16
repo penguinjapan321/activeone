@@ -27,7 +27,17 @@
           </div>
         </div>
       </main>
-
+      <div class="breadcrumbs">
+        <div class="breadcrumbs__inner max_width">
+          <ul class="breadcrumbs_ul">
+            <li><a href="index.html">トップページ</a></li>
+            <li>
+              <a href="season_terrace.html">アクティブワン シーズンテラス</a>
+            </li>
+            <li><a href="#">活動</a></li>
+          </ul>
+        </div>
+      </div>
       <section class="section" id="intro-activity">
         <div class="section__inner">
           <div class="section__innner--contents">
@@ -498,5 +508,21 @@
       <!--#include FILE="include/footer.html"-->
     </div>
     <!--#include FILE="include/script.html"-->
+    <!-- swiper -->
+    <script>
+      // Swiper1
+      let mySwiper = new Swiper(".swiper", {
+        lazy: {
+          loadOnTransitionStart: true,
+          loadPrevNext: true,
+        },
+        navigation: {
+          //ナビゲーションのオプション（矢印ボタンの要素を指定）
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    <!-- /swiper -->
   </body>
 </html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      title="SOY_Inquiry"
+      type="text/css"
+      href="/contact?stylesheet&amp;17605800"
+    />
+    <meta charset="UTF-8" />
+    <title>お問い合わせ</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QGM0V9D32L"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QGM0V9D32L");
+    </script>
+  </head>
+  <body>
+    <h1>お問い合わせ</h1>
+
+    <form method="post" enctype="multipart/form-data">
+      <input
+        type="hidden"
+        name="soy2_token"
+        value="6bd7b3498b0c7a61345a980cc8051850"
+      />
+
+      <table class="soy_inquiry_message" id="soy_inquiry_message_information">
+        <tr>
+          <td>下記の項目を入力してください。</td>
+        </tr>
+      </table>
+
+      <div id="inquiry_form_wrapper">
+        <table id="inquiry_form" class="inquiry_form">
+          <tr class="require">
+            <th>*お名前</th>
+            <td>
+              <input type="text" name="data[column_1]" value="" />
+            </td>
+          </tr>
+          <tr class="require">
+            <th>*フリガナ</th>
+            <td>
+              <input type="text" name="data[column_2]" value="" />
+            </td>
+          </tr>
+          <tr class="require">
+            <th>*メールアドレス</th>
+            <td>
+              <input type="email" name="data[column_3]" value="" />
+            </td>
+          </tr>
+          <tr class="require">
+            <th>*問い合わせ内容</th>
+            <td>
+              <textarea name="data[column_4]"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td>
+              <input type="text" name="data[column_5][]" value="" />
+              -
+              <input type="text" name="data[column_5][]" value="" />
+              -
+              <input type="text" name="data[column_5][]" value="" />
+            </td>
+          </tr>
+          <tr>
+            <th>ご住所</th>
+            <td>
+              <div class="responsive">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>郵便番号</td>
+                      <td>
+                        <input
+                          type="text"
+                          size="10"
+                          class="input-zip"
+                          name="data[column_6][zip]"
+                          value=""
+                        />
+                        <a
+                          href="javascript:void(0);"
+                          class="btn btn-primary search-btn"
+                          >住所検索</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td nowrap>都道府県</td>
+                      <td>
+                        <select
+                          class="input-pref"
+                          name="data[column_6][prefecture]"
+                        >
+                          <option value="">選択してください</option>
+                          <option>北海道</option>
+                          <option>青森県</option>
+                          <option>岩手県</option>
+                          <option>宮城県</option>
+                          <option>秋田県</option>
+                          <option>山形県</option>
+                          <option>福島県</option>
+                          <option>茨城県</option>
+                          <option>栃木県</option>
+                          <option>群馬県</option>
+                          <option>埼玉県</option>
+                          <option>千葉県</option>
+                          <option>東京都</option>
+                          <option>神奈川県</option>
+                          <option>新潟県</option>
+                          <option>富山県</option>
+                          <option>石川県</option>
+                          <option>福井県</option>
+                          <option>山梨県</option>
+                          <option>長野県</option>
+                          <option>岐阜県</option>
+                          <option>静岡県</option>
+                          <option>愛知県</option>
+                          <option>三重県</option>
+                          <option>滋賀県</option>
+                          <option>京都府</option>
+                          <option>大阪府</option>
+                          <option>兵庫県</option>
+                          <option>奈良県</option>
+                          <option>和歌山県</option>
+                          <option>鳥取県</option>
+                          <option>島根県</option>
+                          <option>岡山県</option>
+                          <option>広島県</option>
+                          <option>山口県</option>
+                          <option>徳島県</option>
+                          <option>香川県</option>
+                          <option>愛媛県</option>
+                          <option>高知県</option>
+                          <option>福岡県</option>
+                          <option>佐賀県</option>
+                          <option>長崎県</option>
+                          <option>熊本県</option>
+                          <option>大分県</option>
+                          <option>宮崎県</option>
+                          <option>鹿児島県</option>
+                          <option>沖縄県</option>
+                          <option>その他・海外</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>市区町村</td>
+                      <td>
+                        <input
+                          class="input-city"
+                          type="text"
+                          size="37"
+                          name="data[column_6][address1]"
+                          value=""
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <script>
+                /*
+                 * zip2address.js
+                 *
+                 * Copyright (c) 2010 Kazuhito Hokamura
+                 * Licensed under the MIT License:
+                 * http://www.opensource.org/licenses/mit-license.php
+                 *
+                 * @author   Kazuhito Hokamura (http://webtech-walker.com/)
+                 * @version  0.0.1
+                 * @edit Tsuyoshi Saito (https://github.com/inunosinsi)
+                 *
+                 * This script inspired by jQuery.zip2addr. (https://github.com/kotarok/jQuery.zip2addr)
+                 * Thank you for kotarok.
+                 *
+                 */
+
+                (function (window) {
+                  var d = document,
+                    api_url =
+                      "//www.google.com/transliterate?langpair=ja-Hira|ja";
+                  prefs = [
+                    "北海道",
+                    "青森県",
+                    "岩手県",
+                    "宮城県",
+                    "秋田県",
+                    "山形県",
+                    "福島県",
+                    "茨城県",
+                    "栃木県",
+                    "群馬県",
+                    "埼玉県",
+                    "千葉県",
+                    "東京都",
+                    "神奈川県",
+                    "新潟県",
+                    "富山県",
+                    "石川県",
+                    "福井県",
+                    "山梨県",
+                    "長野県",
+                    "岐阜県",
+                    "静岡県",
+                    "愛知県",
+                    "三重県",
+                    "滋賀県",
+                    "京都府",
+                    "大阪府",
+                    "兵庫県",
+                    "奈良県",
+                    "和歌山県",
+                    "鳥取県",
+                    "島根県",
+                    "岡山県",
+                    "広島県",
+                    "山口県",
+                    "徳島県",
+                    "香川県",
+                    "愛媛県",
+                    "高知県",
+                    "福岡県",
+                    "佐賀県",
+                    "長崎県",
+                    "熊本県",
+                    "大分県",
+                    "宮崎県",
+                    "鹿児島県",
+                    "沖縄県",
+                  ];
+
+                  //住所検索用の正規表現
+                  var reg_text =
+                    "(大和郡山市|蒲郡市|小郡市|郡上市|杵島郡大町町|佐波郡玉村町|(?:[^市]*?|余市|高市)郡.+?[町村]|(?:石狩|伊達|八戸|盛岡|奥州|南相馬|上越|姫路|宇陀|黒部|小諸|富山|岩国|周南|佐伯|西海)市|.*?[^0-9一二三四五六七八九十上下]区|四日市市|廿日市市|.+?市|.+?町|.+?村)(.*?)([0-9-]*?)$";
+
+                  var zip2address = function (zip, callback) {
+                    var jsonp_callback =
+                        "zip2address_jsonp" + new Date().getTime(),
+                      url = api_url + "&jsonp=" + jsonp_callback,
+                      head = d.getElementsByTagName("head")[0],
+                      script = d.createElement("script");
+
+                    // jsonp callback function
+                    window[jsonp_callback] = function (data) {
+                      var address = {};
+                      address.all = data[0][1][0];
+
+                      // check match pref
+                      for (var i = 0, l = prefs.length; i < l; i++) {
+                        var pref = prefs[i];
+                        if (address.all.indexOf(pref) === 0) {
+                          address.pref = i + 1;
+                          var address_text = address.all.replace(pref, "");
+                          var reg = new RegExp(reg_text);
+                          var res = address_text.match(reg);
+                          address.city = res[1];
+                          address.town = res[2];
+                          break;
+                        }
+                      }
+                      // no match address
+                      if (!address.pref && !address.city && !address.town) {
+                        address = undefined;
+                      }
+
+                      // callback function
+                      callback(address);
+
+                      // cleaning
+                      try {
+                        delete window[jsonp_callback];
+                      } catch (e) {}
+                      head.removeChild(script);
+                    };
+
+                    // check zip formtting
+                    if (/^\d{7}$/.test(zip)) {
+                      zip = zip.toString().replace(/(\d{3})(\d{4})/, "$1-$2");
+                    }
+                    /*else if (!/^\d{3}-\d{4}$/.test(zip)) {
+		callback(undefined);
+	}*/
+
+                    // call api by jsonp
+                    url += "&text=" + encodeURIComponent(zip);
+                    script.setAttribute("src", url);
+                    head.appendChild(script);
+                  };
+
+                  // export function
+                  window.zip2address = zip2address;
+                })(window);
+
+                (function () {
+                  if (document.querySelector(".search-btn")) {
+                    document
+                      .querySelector(".search-btn")
+                      .addEventListener("click", function (e) {
+                        if (document.querySelector(".input-zip")) {
+                          var zip = inquiry_convert_zipcode(
+                            document.querySelector(".input-zip").value
+                          );
+                        } else {
+                          var zip =
+                            document.querySelector(".input-zip1").value +
+                            document.querySelector(".input-zip2").value;
+                        }
+
+                        zip2address(zip, function (address) {
+                          if (address) {
+                            document.querySelector(".input-pref").value =
+                              prefs[address.pref - 1];
+                            document.querySelector(".input-city").value =
+                              address.city + address.town;
+                            document.querySelector(".input-town").value = "";
+                          } else {
+                            alert("正しい郵便番号を入力して下さい。");
+                          }
+                        });
+                      });
+                    //自動検索モード
+                  } else {
+                    if (document.querySelector(".input-zip")) {
+                      document
+                        .querySelector(".input-zip")
+                        .addEventListener("keyup", function (e) {
+                          inquiry_search_address();
+                        });
+                    }
+
+                    if (document.querySelector(".input-zip1")) {
+                      document
+                        .querySelector(".input-zip1")
+                        .addEventListener("keyup", function (e) {
+                          inquiry_search_address();
+                        });
+                    }
+
+                    if (document.querySelector(".input-zip2")) {
+                      document
+                        .querySelector(".input-zip2")
+                        .addEventListener("keyup", function (e) {
+                          inquiry_search_address();
+                        });
+                    }
+                  }
+                })();
+
+                function inquiry_search_address() {
+                  if (document.querySelector(".input-zip")) {
+                    var zip = document.querySelector(".input-zip")
+                      ? inquiry_convert_zipcode(
+                          document.querySelector(".input-zip").value
+                        )
+                      : "";
+
+                    if (zip.length === 7) {
+                      inquiry_zip2address(zip);
+                    } else {
+                      inquiry_insert_empty_values();
+                    }
+                  } else if (document.querySelector(".input-zip1")) {
+                    var zip1 = document.querySelector(".input-zip1")
+                      ? document.querySelector(".input-zip1").value
+                      : "";
+                    var zip2 = document.querySelector(".input-zip2")
+                      ? document.querySelector(".input-zip2").value
+                      : "";
+
+                    if (zip1.length === 3 && zip2.length === 4) {
+                      inquiry_zip2address(zip1 + zip2);
+                    } else {
+                      inquiry_insert_empty_values();
+                    }
+                  }
+                }
+
+                function inquiry_zip2address(zip) {
+                  zip2address(zip, function (address) {
+                    if (address) {
+                      document.querySelector(".input-pref").value =
+                        prefs[address.pref - 1];
+                      document.querySelector(".input-city").value =
+                        address.city + address.town;
+                      //document.querySelector(".input-town").value = "";
+                    }
+                  });
+                }
+
+                function inquiry_insert_empty_values() {
+                  document.querySelector(".input-pref").value = "";
+                  document.querySelector(".input-city").value = "";
+                  document.querySelector(".input-town").value = "";
+                }
+
+                function inquiry_convert_zipcode(zip) {
+                  if (zip.length === 0) return "";
+                  if (zip.indexOf("-") >= 0) zip = zip.replace("-", "");
+                  if (zip.indexOf("ー") >= 0) zip = zip.replace("ー", "");
+                  return zip;
+                }
+              </script>
+            </td>
+          </tr>
+          <tr class="require">
+            <th>*お問い合わせ内容</th>
+            <td>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_7_0"
+                  name="data[column_7][]"
+                  value="見学予約"
+                />
+                見学予約
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_7_1"
+                  name="data[column_7][]"
+                  value="資料請求"
+                />
+                資料請求
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_7_2"
+                  name="data[column_7][]"
+                  value="ご相談"
+                />
+                ご相談
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_7_3"
+                  name="data[column_7][]"
+                  value="その他"
+                />
+                その他
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th>該当の施設・サービス</th>
+            <td>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_0"
+                  name="data[column_8][]"
+                  value="アクティブワン シーズンテラス"
+                />
+                アクティブワン シーズンテラス
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_1"
+                  name="data[column_8][]"
+                  value="アクティブワン デイサービス"
+                />
+                アクティブワン デイサービス
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_2"
+                  name="data[column_8][]"
+                  value="アクティブワン 訪問介護"
+                />
+                アクティブワン 訪問介護
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_3"
+                  name="data[column_8][]"
+                  value="アクティブワン 小規模多機能"
+                />
+                アクティブワン 小規模多機能
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_4"
+                  name="data[column_8][]"
+                  value="アクティブワン ケアプランセンター"
+                />
+                アクティブワン ケアプランセンター
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  id="data_column_8_5"
+                  name="data[column_8][]"
+                  value="その他"
+                />
+                その他
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容詳細</th>
+            <td>
+              <textarea name="data[column_9]"></textarea>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <table>
+        <tr>
+          <td style="text-align: center; border-style: none">
+            <input
+              name="data[hash]"
+              type="hidden"
+              value="9f525e629589e8d9e147bc0bc52788ab"
+            />
+            <input name="confirm" type="submit" value="入力内容の確認" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

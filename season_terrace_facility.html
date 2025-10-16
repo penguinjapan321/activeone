@@ -16,7 +16,7 @@
         <div class="main__inner">
           <div class="main__inner--contents">
             <div class="mainImageBlock">
-              <div class="mainImageBlock__inner">
+              <div class="mainImageBlock__inner fade">
                 <div
                   class="mainImageBlock__inner--img facility_main-img"
                   data-bg="image/child/season_terrace/facility/child_facility_wide_1.jpg"
@@ -30,7 +30,17 @@
           </div>
         </div>
       </main>
-
+      <div class="breadcrumbs">
+        <div class="breadcrumbs__inner max_width">
+          <ul class="breadcrumbs_ul">
+            <li><a href="index.html">トップページ</a></li>
+            <li>
+              <a href="season_terrace.html">アクティブワン シーズンテラス</a>
+            </li>
+            <li><a href="#">設備</a></li>
+          </ul>
+        </div>
+      </div>
       <section class="section">
         <div class="section__inner">
           <div class="section__innner--contents">
@@ -176,7 +186,7 @@
               </div>
             </div>
             <div class="mainImageBlock sectionMainImage mb_4vh">
-              <div class="mainImageBlock__inner">
+              <div class="mainImageBlock__inner fade">
                 <div
                   class="mainImageBlock__inner--img cafe-img"
                   data-bg="image/child/season_terrace/facility/child_facility_wide_2.jpg"
@@ -620,7 +630,7 @@
         <div class="section__inner no-padding">
           <div class="section__innner--contents">
             <div class="mainImageBlock sectionMainImage">
-              <div class="mainImageBlock__inner">
+              <div class="mainImageBlock__inner fade">
                 <div
                   class="mainImageBlock__inner--img ikebana-img"
                   data-bg="image/child/season_terrace/facility/child_facility_wide_3.jpg"
@@ -740,5 +750,21 @@
       <!--#include FILE="include/footer.html"-->
     </div>
     <!--#include FILE="include/script.html"-->
+    <!-- swiper -->
+    <script>
+      // Swiper1
+      let mySwiper = new Swiper(".swiper", {
+        lazy: {
+          loadOnTransitionStart: true,
+          loadPrevNext: true,
+        },
+        navigation: {
+          //ナビゲーションのオプション（矢印ボタンの要素を指定）
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    <!-- /swiper -->
   </body>
 </html>

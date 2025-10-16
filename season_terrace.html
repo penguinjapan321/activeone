@@ -87,11 +87,7 @@
         <div class="main_heading_wrap fade">
           <div class="h1_heading">
             <div class="h1_heading__inner">
-              <h1 class="h1_heading__inner--contents fade">
-                総合リハビリケアセンター<br
-                  class="display_dynamic"
-                />アクティブワン
-              </h1>
+              <h1 class="h1_heading__inner--contents fade">アクティブワン</h1>
             </div>
           </div>
           <div class="main_heading_p">
@@ -108,8 +104,10 @@
         <div class="breadcrumbs">
           <div class="breadcrumbs__inner max_width">
             <ul class="breadcrumbs_ul">
-              <li><a href="#">トップページ</a></li>
-              <li><a href="#">アクティブワン シーズンテラス</a></li>
+              <li><a href="index.html">トップページ</a></li>
+              <li>
+                <a href="season_terrace.html">アクティブワン シーズンテラス</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -319,7 +317,7 @@
         </section>
         <section
           id="rooms"
-          class="room child_section sec-scroll-point bg_brandColor"
+          class="room child_section sec-scroll-point bg_brandColor pdb-2vh"
         >
           <div class="room__inner padding__tb_40 child_section__inner">
             <div class="room__inner--contents child_section__inner--contents">
@@ -7313,7 +7311,7 @@
         </section>
 
         <section id="location" class="location sec-scroll-point child_section">
-          <div class="location__inner padding__tb_40 child_section__inner">
+          <div class="location__inner padding__t_40 child_section__inner">
             <div
               class="location__inner--contents child_section__inner--contents max_width"
             >
@@ -7350,5 +7348,21 @@
       <!--#include FILE="include/footer.html"-->
     </div>
     <!--#include FILE="include/script.html"-->
+    <!-- swiper -->
+    <script>
+      // Swiper1
+      let mySwiper = new Swiper(".swiper", {
+        lazy: {
+          loadOnTransitionStart: true,
+          loadPrevNext: true,
+        },
+        navigation: {
+          //ナビゲーションのオプション（矢印ボタンの要素を指定）
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    <!-- /swiper -->
   </body>
 </html>

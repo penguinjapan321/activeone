@@ -1,6 +1,6 @@
-<script src="javascript/jquery.inview.min.js"></script>
+<script src="https://activeone.qolservice.co.jp/dev/javascript/jquery.inview.min.js"></script>
 
-<script src="javascript/splide-extension-intersection.min.js"></script>
+<script src="https://activeone.qolservice.co.jp/dev/javascript/splide-extension-intersection.min.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <script>
@@ -214,36 +214,43 @@
   main.mount();
   thumb_splide.mount();
 </script>
+
 <!-- swiper -->
 <script>
-  const sliderThumbnail = new Swiper(".slider-thumbnail", {
+  const sliderThumbnail = new Swiper(".slider-thumbnail-1", {
     //   slidesPerView: 3, // サムネイルの枚数
   });
   // スライダー
-  const slider = new Swiper(".slider", {
+  const slider = new Swiper(".slider-1", {
     loop: false,
     effect: "fade",
     fadeEffect: {
       crossFade: true,
     },
-
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
     thumbs: {
       swiper: sliderThumbnail,
     },
   });
 </script>
 <script>
-  const sliderThumbnail1 = new Swiper(".slider-thumbnail-1", {
+  const sliderThumbnail1 = new Swiper(".slider-thumbnail-2", {
     //   slidesPerView: 3, // サムネイルの枚数
   });
   // スライダー
-  const slider1 = new Swiper(".slider-1", {
+  const slider1 = new Swiper(".slider-2", {
     loop: false,
     effect: "fade",
     fadeEffect: {
       crossFade: true,
     },
-
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
     thumbs: {
       swiper: sliderThumbnail1,
     },
@@ -293,9 +300,9 @@
  -->
 <!-- /swiper -->
 
-<script src="featherlight/featherlight.js"></script>
+<script src="https://activeone.qolservice.co.jp/dev/featherlight/featherlight.js"></script>
 
-<script src="javascript/common.js"></script>
+<script src="https://activeone.qolservice.co.jp/dev/javascript/common.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // 対象セクションとナビがなければ終了

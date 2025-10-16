@@ -159,6 +159,15 @@ $(function () {
 
   // 実際のトグル処理（namespace付きイベントを使う）
   function toggleMenuHandler(e) {
+    var $t = $(e.target);
+    // .g_nav 内のリンクは通常どおり機能させる（メニューは閉じる）
+    if ($t.closest(".g_nav__inner a").length) {
+      $("#g_menu_btn, .g_nav").removeClass("active");
+      $("body").removeClass("bodyLock").css({ top: 0 });
+      window.scrollTo(0, bodyLockPos);
+      return; // デフォルト動作を許可
+    }
+
     e.preventDefault();
     $("#g_menu_btn, .g_nav").toggleClass("active");
 
